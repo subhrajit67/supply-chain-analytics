@@ -1,7 +1,6 @@
 # 📦 Supply Chain Analytics — Moving from Complexity to Clarity
 
-![Dashboard Preview](dashboard.png)
-
+![Dashboard Preview](images\dashboard.png)
 A complete end-to-end supply chain analytics project for **Just In Time**, a global e-commerce company.  
 This project identifies shipment delays, inventory imbalances, and profit inefficiencies — and proposes data-driven solutions through interactive Tableau dashboards.
 
