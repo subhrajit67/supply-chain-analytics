@@ -1,11 +1,45 @@
 # 📦 Supply Chain Analytics — Moving from Complexity to Clarity
 
-A complete end-to-end supply chain analytics project for **Just In Time**, a global e-commerce company.  
-This project identifies shipment delays, inventory imbalances, and profit inefficiencies — and proposes data-driven solutions through interactive Tableau dashboards.
+> End-to-end supply chain analytics project for **Just In Time**, a global e-commerce company.  
+> Identifies shipment delays, inventory imbalances, and profit inefficiencies — and delivers data-driven solutions through an interactive Streamlit web app and Tableau story dashboards.
 
-**🔗 Tableau Story Dashboard:** [View Live](https://public.tableau.com/app/profile/subhrajit.majumder6368/viz/supplychainoperationsandanalyticssuite/BusinessPerformanceDashboard_)
-                        
-**🔗 Live Webapp link:** https://supply-chain-analytics-hhxowpozpj5upksmubvakv.streamlit.app/
+<p align="left">
+  <img src="https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Streamlit-1.28+-FF4B4B?logo=streamlit&logoColor=white" />
+  <img src="https://img.shields.io/badge/Pandas-Data%20Wrangling-150458?logo=pandas&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tableau-Dashboard-E97627?logo=tableau&logoColor=white" />
+  <img src="https://img.shields.io/badge/Status-Live-brightgreen" />
+</p>
+
+**🔗 Live Streamlit App:** [View App](https://supply-chain-analytics-hhxowpozpj5upksmubvakv.streamlit.app/) 
+ 
+**🔗 Tableau Story Dashboard:** [View on Tableau Public](https://public.tableau.com/app/profile/subhrajit.majumder6368/viz/supplychainoperationsandanalyticssuite/BusinessPerformanceDashboard_)
+
+---
+
+## 🎯 Problem Statement
+
+Just In Time's supply chain is losing revenue through three compounding problems:
+- **29% of all orders are delayed** — with no visibility into which shipping modes or regions are responsible
+- **Inventory is misallocated** — high-demand products are understocked while slow-movers tie up warehouse capital
+- **Profit is heavily concentrated** — the top few SKUs drive most revenue, yet they receive no special protection
+
+This project answers: *where are the leaks, how large are they, and what should the business do about them?*
+
+---
+
+## 🏆 Key Results
+
+| # | Finding | Impact |
+|---|---|---|
+| 1 | Overall shipment delay rate | **29.05%** of all orders |
+| 2 | Peak profit month | **August 2016 — $134,801** |
+| 3 | Highest storage cost product | **Perfect Fitness Rip Deck** (~$75,120) |
+| 4 | Worst avg shipment delay | **Caribbean Footwear** (700+ days avg) |
+| 5 | Most understocked product | **Fan Shop** — demand far exceeds supply |
+| 6 | Top profit market | **LATAM — $1.18M** total |
+| 7 | ABC Tier A concentration | Top SKUs drive **~70%** of total profit |
+| 8 | Longest fulfillment category | **Sporting Goods — 130+ days** avg |
 
 ---
 
@@ -13,10 +47,11 @@ This project identifies shipment delays, inventory imbalances, and profit ineffi
 
 | Tool | Purpose |
 |---|---|
-| Python (Pandas, NumPy) | Data cleaning, preprocessing, feature engineering |
-| Matplotlib & Seaborn | Exploratory data analysis (EDA) visualizations |
-| Tableau Public | Interactive dashboards & story |
-| Jupyter Notebook | Development & documentation environment |
+| Python 3.11 (Pandas, NumPy) | Data cleaning, preprocessing, feature engineering |
+| Matplotlib & Seaborn | EDA visualizations |
+| Streamlit | Interactive web application |
+| Tableau Public | Story dashboards for business stakeholders |
+| Jupyter Notebook | Exploratory analysis & documentation |
 
 ---
 
@@ -26,24 +61,16 @@ This project identifies shipment delays, inventory imbalances, and profit ineffi
 Supply-Chain-Analytics/
 │
 ├── Datasets/
-│   ├── orders_and_shipment.csv          # Raw orders & shipment data
-│   ├── inventory.csv                    # Raw warehouse inventory data
-│   └── fulfillment.csv                  # Raw order fulfillment days
+│   ├── orders_and_shipment.csv     # 30,871 rows — orders, shipment mode, profit
+│   ├── inventory.csv               # 4,200 rows — warehouse inventory by product
+│   └── fulfillment.csv             # 118 rows — avg fulfillment days per product
 │
-├── plots/                               # Auto-generated EDA charts
-│   ├── monthly_profit_trend.png
-│   ├── delay_by_shipment_mode.png
-│   ├── profit_by_market.png
-│   ├── top10_products_profit.png
-│   ├── abc_segmentation.png
-│   ├── processing_time_dist.png
-│   ├── storage_cost_top10.png
-│   └── correlation_heatmap.png
+├── plots/                          # Auto-generated EDA charts (8 total)
 │
-├── Supply_Chain_Analytics.ipynb         # Main analysis notebook
-├── dashboard.png                        # Tableau dashboard screenshot
-├── JIT_Logo.PNG                         # Company logo
-├── requirements.txt                     # Python dependencies
+├── app.py                          # ← Streamlit web application
+├── Supply_Chain_Analytics.ipynb    # ← Main analysis notebook
+├── .python-version                 # Python 3.11 pin for Streamlit Cloud
+├── requirements.txt                # Python dependencies
 └── README.md
 ```
 
@@ -59,142 +86,103 @@ cd Supply-Chain-Analytics
 # 2. Install dependencies
 pip install -r requirements.txt
 
-# 3. Run the notebook
+# 3a. Run the Streamlit app
+streamlit run app.py
+
+# 3b. Or run the analysis notebook
 jupyter notebook Supply_Chain_Analytics.ipynb
 ```
 
-> All cells run top-to-bottom. Cleaned CSVs and EDA plots are exported automatically.
-
----
-
-## 🎯 Objective
-
-As the data analyst for Just In Time, the goal is to:
-- Identify **supply chain inefficiencies** in shipment and inventory
-- Perform **EDA** to uncover patterns in profit, delays, and inventory
-- Build **5 interactive Tableau dashboards** covering business performance, inventory, and shipment analysis
-- Propose **actionable business improvements** backed by data
+> All notebook cells run top-to-bottom. Cleaned CSVs and EDA plots are exported automatically.
 
 ---
 
 ## 📊 Dataset Overview
 
-Three datasets covering the period **2015–2017**:
+Three datasets covering **2015–2017**:
 
 | Dataset | Rows | Description |
 |---|---|---|
 | `orders_and_shipment.csv` | 30,871 | Order details, customer info, shipment mode, profit, discount |
-| `inventory.csv` | 4,200 | Monthly warehouse inventory per product, storage cost per unit |
+| `inventory.csv` | 4,200 | Monthly warehouse inventory per product + storage cost per unit |
 | `fulfillment.csv` | 118 | Average fulfillment days per product |
 
 ---
 
 ## 🔧 Data Preprocessing & Feature Engineering
 
-Steps performed in the notebook:
-
-1. **Data Quality Check** — null values, duplicates, and statistical summary
-2. **Column Cleaning** — stripped whitespace from all column headers
-3. **Discount Fix** — replaced `'-'` string values with `0` in `Discount %`
-4. **Country Fix** — resolved encoding artefacts (`\xa0`, `\x92`, etc.) in country names
-5. **Date Engineering** — merged year/month/day columns → `Order Datetime`, `Shipment Datetime`
-6. **Order Processing Time** — `Shipment Datetime − Order Datetime` (same-day negatives → 0)
-7. **Shipment Delay** — `Actual days − Scheduled days` + binary `Is Delay` flag
-8. **Storage Cost** — `Warehouse Inventory × Inventory Cost Per Unit`
-9. **ABC Segmentation** — classified products into A/B/C tiers by cumulative profit contribution (A ≤ 70%, B ≤ 90%, C = rest)
-10. **Export** — 3 clean CSVs exported for Tableau
+| Step | What Was Done |
+|---|---|
+| Data Quality Check | Null values, duplicates, statistical summary |
+| Column Cleaning | Stripped whitespace from all headers |
+| Discount Fix | Replaced `'  -  '` string values with `0` in `Discount %` |
+| Country Fix | Resolved encoding artefacts (`\xa0`, `\x92`, etc.) in country names |
+| Date Engineering | Merged year/month/day columns → `Order Datetime`, `Shipment Datetime` |
+| Processing Time | `Shipment Datetime − Order Datetime`; negatives clipped to 0 |
+| Shipment Delay | `Actual days − Scheduled days` + binary `Is Delay` flag |
+| Storage Cost | `Warehouse Inventory × Inventory Cost Per Unit` |
+| ABC Segmentation | Products classified A/B/C by cumulative profit (A ≤ 70%, B ≤ 90%, C = rest) |
+| Export | 3 cleaned CSVs exported for Tableau ingestion |
 
 ---
 
-## 📈 Exploratory Data Analysis (EDA)
+## 📈 Exploratory Data Analysis — 8 Visualizations
 
-The notebook generates **8 visualizations** that answer key business questions:
-
-| Chart | Business Question |
+| Chart | Business Question Answered |
 |---|---|
 | Monthly Profit Trend | When was performance best/worst? |
-| Delay Rate by Shipment Mode | Which shipping methods are most delayed? |
+| Delay Rate by Shipment Mode | Which shipping methods are most unreliable? |
 | Profit by Customer Market | Which regions drive the most revenue? |
 | Top 10 Products by Profit | Where is profit concentrated? |
-| ABC Segmentation Donuts | How many products drive how much profit? |
+| ABC Segmentation Donuts | How many SKUs drive how much of the profit? |
 | Processing Time Distribution | What does a typical order cycle look like? |
-| Top 10 Storage Cost Products | Which products cost most to hold? |
-| Correlation Heatmap | How do numeric variables relate to each other? |
+| Top 10 Storage Cost Products | Which products cost the most to hold? |
+| Correlation Heatmap | How do numeric supply chain variables relate? |
 
 ---
 
-## 📈 Tableau Story — 5 Dashboards
+## 📊 Tableau Story — 5 Dashboards
 
 ### 1. 🏆 Business Performance
 > *"Perfect Fitness Rip Deck leads profits, but August 2016 marked peak performance — revenue has been declining since."*
 
-- Top products by total profit
-- Monthly profit trend (2015–2017)
-- Profit margin bubble chart (color-coded by margin %)
-- Highest inventory storage cost by product
-
 ### 2. 📦 Inventory Management
 > *"Fan Shop is critically understocked vs demand — we're losing sales opportunities."*
-
-- Supply vs Demand bar chart by product
-- Inventory Details Table with storage costs
-- Overstock and understock identification using average reference line
 
 ### 3. 🚢 Shipment Investigation
 > *"29% of all orders are delayed — concentrated in Latin America and South/Southeast Asia."*
 
-- World map: Delayed (blue) vs On Time (orange) by country
-- 29.05% delay rate highlighted
-- Geographic delay pattern identification
-
 ### 4. ⚠️ Shipment Delay Details
 > *"Caribbean Footwear and Eastern region Pet Shop show the worst delays — 700+ days average."*
 
-- Average shipment delay by Customer Region × Product Department
-- Color coded: green = early, red = severely delayed
-
 ### 5. ⏱️ Order Fulfillment Days
 > *"Sporting Goods takes 130+ days to fulfill — nearly 3× longer than most categories."*
-
-- Average corrected processing time by product category
-- Benchmark comparison across all 49 categories
-
----
-
-## 🔑 Key Findings
-
-| # | Finding | Metric |
-|---|---|---|
-| 1 | Overall shipment delay rate | **29.05%** of all orders |
-| 2 | Peak profit month | **August 2016** — $134,801 |
-| 3 | Highest storage cost product | **Perfect Fitness Rip Deck** (~$75,120) |
-| 4 | Worst avg shipment delay | **Caribbean Footwear** (700+ days avg) |
-| 5 | Most understocked product | **Fan Shop** — demand far exceeds supply |
-| 6 | Top profit market | **LATAM** — $1.18M total |
-| 7 | ABC Tier A concentration | Top SKUs drive **~70%** of total profit |
-| 8 | Longest fulfillment category | **Sporting Goods** — 130+ days avg |
 
 ---
 
 ## 💡 Business Recommendations
 
-**1. Protect Tier A Products**  
-Perfect Fitness Rip Deck, Field & Stream, and Nike Running Shoe drive 65% of profit. Ensure these are never understocked and prioritize their shipping routes.
+**1. 🛡️ Protect Tier A Products — Never Stockout**  
+Perfect Fitness Rip Deck, Field & Stream, and Nike Running Shoe drive 65% of profit. Set automatic reorder triggers and dedicate premium shipping lanes to these SKUs.
 
-**2. Investigate LATAM Logistics**  
-LATAM is the highest-profit market but also has concentrated shipment delays. A 10% reduction in LATAM delays could materially improve revenue.
+**2. 🌎 Fix LATAM Logistics — Highest ROI Fix Available**  
+LATAM is the most profitable market ($1.18M) yet has the most concentrated delays. A 10% delay reduction could recover $100K+ in annual revenue.
 
-**3. Review the First Class / Same Day Delay Paradox**  
-Premium shipping modes show higher delay rates than Standard Class — this suggests a routing or capacity problem, not a pricing one.
+**3. ⚡ Investigate the Premium Shipping Delay Paradox**  
+First Class and Same Day modes delay more than Standard Class — a carrier reliability or routing capacity issue, not a pricing one. Audit before next contract renewal.
 
-**4. Rebalance Inventory to ABC Tiers**  
-Fan Shop (understocked A-tier) needs reallocation. Redistribute warehouse space from C-tier overstock to high-demand A-tier products.
+**4. 📦 Rebalance Inventory by ABC Tier**  
+Fan Shop (understocked Tier A) needs emergency reallocation. Move warehouse space from Tier C overstock to high-demand Tier A products.
 
-**5. Audit Anomalous Processing Times**  
-8.9% of orders show negative processing times. Root-cause investigation needed — timezone mismatch or data entry errors?
+**5. 🔍 Audit Anomalous Processing Times**  
+8.9% of orders show negative processing times — likely timezone offsets or ERP data entry errors. Fix upstream data quality before it corrupts future models.
 
 ---
 
 ## 📌 Acknowledgement
 
-This project was inspired by a DataCamp competition focused on real-world supply chain analytics. Dataset sourced from DataCamp's public competition resources.
+Inspired by a DataCamp competition focused on real-world supply chain analytics. Dataset sourced from DataCamp's public competition resources.
+
+---
+
+*Built by [Subhrajit Majumder](https://github.com/subhrajit67)*
