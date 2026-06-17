@@ -4,6 +4,8 @@ A complete end-to-end supply chain analytics project for **Just In Time**, a glo
 This project identifies shipment delays, inventory imbalances, and profit inefficiencies — and proposes data-driven solutions through interactive Tableau dashboards.
 
 **🔗 Tableau Story Dashboard:** [View Live](https://public.tableau.com/app/profile/subhrajit.majumder6368/viz/supplychainoperationsandanalyticssuite/BusinessPerformanceDashboard_)
+                        
+**🔗 Live Webapp link:** https://supply-chain-analytics-hhxowpozpj5upksmubvakv.streamlit.app/
 
 ---
 
