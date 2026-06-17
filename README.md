@@ -11,8 +11,8 @@
   <img src="https://img.shields.io/badge/Status-Live-brightgreen" />
 </p>
 
-**🔗 Live Streamlit App:** [View App](https://supply-chain-analytics-hhxowpozpj5upksmubvakv.streamlit.app/) 
- 
+**🔗 Live Streamlit App:** [View App](https://supply-chain-analytics-tpu5f9ifsb7xus9r7hg5q2.streamlit.app/) 
+
 **🔗 Tableau Story Dashboard:** [View on Tableau Public](https://public.tableau.com/app/profile/subhrajit.majumder6368/viz/supplychainoperationsandanalyticssuite/BusinessPerformanceDashboard_)
 
 ---
